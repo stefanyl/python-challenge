@@ -11,11 +11,10 @@ total_profit = []
 profit_change = []
 
 #Read in the CSV and store the header row.
-with open(csvpath, encoding='utf-8-sig') as budget_data:
+with open(csvpath, newline="", encoding='utf-8-sig') as budget_data:
     csvreader = csv.reader(budget_data, delimiter=',')
-    print(csvreader)
 
-    csv_header = next(csvreader)
+    header = next(csvreader)
 
     #for loop to iterate through the rows
     for row in csvreader:
@@ -27,17 +26,18 @@ with open(csvpath, encoding='utf-8-sig') as budget_data:
         total_profit.append(int(row[1]))
       
     #calculate the changes in "Profit/Losses" over the entire period. 
-    #Iterate through profits to find average of those changes.
-    for i = range(len(total_profit)-1):
-        profit_change.append(total_profit[i+1]-total_profit[1])
+    #Iterate through profits to find average of those changes. 
+    for i in range(len(total_profit)-1):
+        profit_change.append(total_profit[i+1]-total_profit[i])
 
-        #find the greatest increase in profits over the entire period
-        max_increase = max(profit_change)
-        max_increase_period = profit_change.index(max(profit_change)) + 1
+#find the greatest increase in profits over the entire period
+max_increase = max(profit_change)
+max_decrease = min(profit_change)
 
-        #find the greatest decrease in profits over the entire period
-        max_decrease = min(profit_change)
-        max_decrease_period = profit_change.index(min(profit_change)) + 1 
+
+#find the greatest decrease in profits over the entire period
+max_increase_period = profit_change.index(max(profit_change)) + 1
+max_decrease_period = profit_change.index(min(profit_change)) + 1 
 
 #print statement and export text file to analysis folder
 print("Financial Analysis")  
