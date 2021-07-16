@@ -32,11 +32,11 @@ with open(csvpath, newline="", encoding='utf-8-sig') as budget_data:
 
 #find the greatest increase in profits over the entire period
 max_increase = max(profit_change)
-max_decrease = min(profit_change)
+max_increase_period = profit_change.index(max(profit_change)) + 1
 
 
 #find the greatest decrease in profits over the entire period
-max_increase_period = profit_change.index(max(profit_change)) + 1
+max_decrease = min(profit_change)
 max_decrease_period = profit_change.index(min(profit_change)) + 1 
 
 #print statement and export text file to analysis folder
@@ -44,6 +44,20 @@ print("Financial Analysis")
 print("--------------------------")
 print(f"Total Months: {len(total_months)}")
 print(f"Total: ${sum(total_profit)}")
-print(f"Average Change: {round(sum(profit_change)/len(profit_change),2)}")
+print(f"Average Change: ${round(sum(profit_change)/len(profit_change),2)}")
 print(f"Greatest Increase in Profits: {total_months[max_increase_period]} (${(str(max_increase))})")
 print(f"Greatest Decrease in Profits: {total_months[max_decrease_period]} (${(str(max_decrease))})")
+
+# assemble your output string 
+analysis_text = (
+    f'Financial Analysis\n'
+    f'--------------------------\n'
+    f'Total Months: {len(total_months)}\n'
+    f'Total: ${sum(total_profit)}\n'
+    f'Average Change: ${round(sum(profit_change)/len(profit_change),2)}\n'
+    f'Greatest Increase in Profits: {total_months[max_increase_period]} (${(str(max_increase))}\n'
+    f'Greatest Decrease in Profits: {total_months[max_decrease_period]} (${(str(max_decrease))}'
+    )
+# write your output string to a text file
+with open('analysis_text.txt', "w") as txt_file:
+    txt_file.write(analysis_text)
