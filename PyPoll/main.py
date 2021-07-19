@@ -32,22 +32,32 @@ with open(csvpath, newline="", encoding="utf-8") as election_data:
 #Find the total number of votes each candidate won.
         if row[2] == "Khan": 
             khan_votes += 1
-        elif row[2] == "Correy":
+        elif    row[2] == "Correy":
             correy_votes += 1
         elif row[2] == "Li": 
             li_votes += 1
-        elif row[2] == "O'Tooley":
+        else row[2] == "O'Tooley":
             otooley_votes += 1 
-        
+
+#The winner of the election based on popular vote - need to fix 
+#winner = max.total_votes
+    election_winner = max(khan_votes, correy_votes, li_votes, otooley_votes)
+
+        if election_winner == khan_votes:
+            winner_name = "Khan"
+        elif election_winner == correy_votes:
+            winner_name = "Correy"
+        elif election_winner == li_votes:
+            winner_name = "Li"
+        else election_winner == otooley_votes:
+            winner_name = "O'Tooley"
+
 #Find the percentage of votes each candidate won.
     khan_percentage = (khan_votes/total_votes) *100
     correy_percentage = (correy_votes/total_votes) * 100
     li_percentage = (li_votes/total_votes)* 100
     otooley_percentage = (otooley_votes/total_votes) * 100
-
-#The winer of the election based on popular vote - need to fix 
-#winner = max.total_votes
-
+    
 #Print your analysis 
 votingresults = {
     "Khan":[khan_percentage, khan_votes],
