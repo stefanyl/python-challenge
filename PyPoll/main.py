@@ -23,7 +23,7 @@ with open(csvpath, newline="", encoding="utf-8") as election_data:
     for row in csvreader:
         total_votes += 1
 
-        #List the candidates who received votes - Khan, Correy, Li, Otooley. 
+        #For the candidates who received votes - Khan, Correy, Li, Otooley. 
         #Find the total number of votes each candidate won.
         if row[2] == "Khan": 
             khan_votes += 1
@@ -34,7 +34,7 @@ with open(csvpath, newline="", encoding="utf-8") as election_data:
         elif row[2] == "O'Tooley":
             otooley_votes += 1 
 
-#The winner of the election based on popular vote - need to fix 
+#The winner of the election based on popular vote. The winner's name will be printed.
     election_winner = max(khan_votes, correy_votes, li_votes, otooley_votes)
     
     if election_winner == khan_votes:
@@ -52,13 +52,6 @@ correy_percentage = (correy_votes/total_votes)
 li_percentage = (li_votes/total_votes)
 otooley_percentage = (otooley_votes/total_votes) 
 
-#Make a dictionary with results
-#votingresults = {
-    #"Khan": khan_percentage, (khan_votes),
-    #"Correy": correy_percentage, (correy_votes),
-    #"Li": li_percentage, (li_votes),
-    #"O'Tooley": otooley_percentage, otooley_votes),
-    #}
     
 #Print your analysis 
 print(f"Election Results")
@@ -73,4 +66,20 @@ print(f"-----------------------------")
 print(f"Winner: {winner_name}")
 print(f"-----------------------------")
 
-#Export analysis as a text file
+#Assemble output string.
+analysis_text = (
+    f'Financial Analysis\n'
+    f'-----------------------------\n'
+    f'Total Votes: {total_votes}\n'
+    f'-----------------------------\n'
+    f'Khan: {khan_percentage:.3%}, ({khan_votes})\n'
+    f'Correy: {correy_percentage:.3%}, ({correy_votes})\n'
+    f'Li: {li_percentage:.3%}, ({li_votes})\n'
+    f"O'Tooley: {otooley_percentage:.3%}, ({otooley_votes})\n"
+    f'-----------------------------\n'
+    f'Winner: {winner_name}\n'
+    f'-----------------------------'
+)
+#Write output string and export analysis as a text file.
+with open('analysis_text', "w") as txt_file:
+    txt_file.write(analysis_text)
