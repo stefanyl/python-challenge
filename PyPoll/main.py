@@ -35,8 +35,8 @@ with open(csvpath, newline="", encoding="utf-8") as election_data:
             otooley_votes += 1 
 
 #The winner of the election based on popular vote - need to fix 
-#winner = max.total_votes
     election_winner = max(khan_votes, correy_votes, li_votes, otooley_votes)
+    
     if election_winner == khan_votes:
         winner_name = "Khan"
     elif election_winner == correy_votes:
@@ -47,10 +47,10 @@ with open(csvpath, newline="", encoding="utf-8") as election_data:
         winner_name = "O'Tooley"
 
 #Find the percentage of votes each candidate won.
-khan_percentage = (khan_votes/total_votes) *100
-correy_percentage = (correy_votes/total_votes) * 100
-li_percentage = (li_votes/total_votes)* 100
-otooley_percentage = (otooley_votes/total_votes) * 100
+khan_percentage = (khan_votes/total_votes) 
+correy_percentage = (correy_votes/total_votes) 
+li_percentage = (li_votes/total_votes)
+otooley_percentage = (otooley_votes/total_votes) 
 
 #Make a dictionary with results
 #votingresults = {
@@ -65,12 +65,12 @@ print(f"Election Results")
 print(f"-----------------------------")
 print(f"Total Votes: {total_votes}")
 print(f"-----------------------------")
-print(f"Khan: {khan_percentage}, ({khan_votes})")
-print(f"Correy: {correy_percentage}, ({correy_votes})")
-print(f"Li: {li_percentage}, ({li_votes})")
-print(f"O'Tooley: {otooley_percentage}, ({otooley_votes})")
+print(f"Khan: {khan_percentage:.3%}, ({khan_votes})")
+print(f"Correy: {correy_percentage:.3%}, ({correy_votes})")
+print(f"Li: {li_percentage:.3%}, ({li_votes})")
+print(f"O'Tooley: {otooley_percentage:.3%}, ({otooley_votes})")
 print(f"-----------------------------")
-print(f"Winner: {election_winner}")
+print(f"Winner: {winner_name}")
 print(f"-----------------------------")
 
 #Export analysis as a text file
